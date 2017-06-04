@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+
+                        <!-- Post -->
+                            <article class="post">
+                                <header>
+                                    <div class="title">
+                                        <h2><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h2>
+                                        <p>{{ article.summary }}</p>
+                                    </div>
+                                    <div class="meta">
+                                        <time class="published" datetime="{{ article.date }}">{{ article.locale_date|title }}</time>
+                                        <a href="#" class="author"><span class="name">{{ article.author }}</span><img src="{{ SITEURL }}/images/avatar.jpg" alt="" /></a>
+                                    </div>
+                                </header>
+                                <a href="{{ SITEURL }}/{{ article.url }}" class="image featured"><img src="{{ SITEURL }}/{{ article.picture }}" alt="" /></a>
+                                <p>{{ article.content }}</p>
+                                <footer>
+                                    <ul class="stats">
+                                        {%- for tag, articles in tags|sort %}
+                                            <li><a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a> ({{ articles|count }})</li>
+                                        {% endfor %}
+                                        <li><a href="#" class="icon fa-heart">0</a></li>
+                                        <li><a href="#" class="icon fa-comment">1</a></li>
+                                    </ul>
+                                </footer>
+                            </article>
+
+                    {% include 'disqus_script.html' %}
+
+{% endblock content %}

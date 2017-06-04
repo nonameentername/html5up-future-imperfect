@@ -1,0 +1,93 @@
+					<section id="sidebar">
+
+						<!-- Intro -->
+							<section id="intro">
+                                <a href="#" class="logo"><img src="{{ SITEURL }}/images/logo.jpg" alt="" /></a>
+								<header>
+									<h2>{{ SITENAME }}</h2>
+                                    <p>{{ SITE_SUMMMARY }}</p>
+								</header>
+							</section>
+
+						<!-- Mini Posts -->
+							<section>
+								<div class="mini-posts">
+
+									<!-- Mini Post -->
+
+                                    {% set recent = articles if not all_articles else all_articles %}
+                                    {% for article in recent %}
+                                        {% if loop.index <= 4 %}
+
+										<article class="mini-post">
+											<header>
+                                                <h3><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h3>
+                                                <time class="published" datetime="{{ article.date }}">{{ article.locale_date|title }}</time>
+                                                <a href="#" class="author"><img src="{{ SITEURL }}/images/avatar.jpg" alt="" /></a>
+											</header>
+                                            <a href="#" class="image"><img src="{{ SITEURL }}/{{ article.minipicture }}" alt="" /></a>
+										</article>
+
+                                        {% endif %}
+                                    {% endfor %}
+
+								</div>
+							</section>
+
+						<!-- Posts List -->
+							<section>
+								<ul class="posts">
+                                {% set recent = articles if not all_articles else all_articles %}
+                                {% for article in recent %}
+                                    {% if loop.index >= 5 and loop.index <= 9 %}
+
+									<li>
+										<article>
+											<header>
+                                                <h3><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h3>
+                                                <time class="published" datetime="{{ article.date }}">{{ article.locale_date|title }}</time>
+											</header>
+                                            <a href="{{ SITEURL }}/{{ article.url }}" class="image"><img src="{{ SITEURL }}/{{ article.tinypicture }}" alt="" /></a>
+										</article>
+									</li>
+
+                                    {% endif %}
+                                {% endfor %}
+
+								</ul>
+							</section>
+
+						<!-- About -->
+							<section class="blurb">
+								<h2>About</h2>
+								<p>{{ ABOUT_TEXT }}</p>
+								{% if ABOUT_LINK is defined %}
+								<ul class="actions">
+									<li><a href="{{ ABOUT_LINK }}" class="button">Learn More</a></li>
+								</ul>
+								{% endif %}
+							</section>
+
+						<!-- Footer -->
+							<section id="footer">
+								<ul class="icons">
+								{% if TWITTER_USER is defined %}
+									<li><a href="http://twitter.com/{{ TWITTER_USER }}" class="fa-twitter"><span class="label">Twitter</span></a></li>
+								{% endif %}
+								{% if FACEBOOK_USER %}
+									<li><a href="https://www.facebook.com/{{ FACEBOOK_USER }}" class="fa-facebook"><span class="label">Facebook</span></a></li>
+								{% endif %}
+								{% if INSTAGRAM_USER %}
+									<li><a href="https://www.instagram.com/{{ INSTAGRAM_USER }}" class="fa-instagram"><span class="label">Instagram</span></a></li>
+								{% endif %}
+								{% if FEED_ALL_RSS %}
+									<li><a href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}" class="fa-rss"><span class="label">RSS</span></a></li>
+								{% endif %}
+								{% if MAIL is defined %}
+									<li><a href="mailto:{{ MAIL }}" class="fa-envelope"><span class="label">Email</span></a></li>
+								{% endif %}
+								</ul>
+								<p class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>. Images: <a href="http://unsplash.com">Unsplash</a>.</p>
+							</section>
+
+					</section>

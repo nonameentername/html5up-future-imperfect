@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+
+                    {% if articles %}
+
+                        {% for article in articles_page.object_list %}
+
+                        <!-- Post -->
+                            <article class="post">
+                                <header>
+                                    <div class="title">
+                                        <h2><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h2>
+                                        <p>{{ article.summary }}</p>
+                                    </div>
+                                    <div class="meta">
+                                        <time class="published" datetime="{{ article.date }}">{{ article.locale_date|title }}</time>
+                                        <a href="#" class="author"><span class="name">{{ article.author }}</span><img src="{{ SITEURL }}/images/avatar1.jpg" alt="" /></a>
+                                    </div>
+                                </header>
+                                <a href="{{ SITEURL }}/{{ article.url }}" class="image featured"><img src="{{ SITEURL }}/{{ article.picture }}" alt="" /></a>
+                                <p>{{ article.content }}</p>
+                                <footer>
+                                    <ul class="actions">
+                                        <li><a href="{{ SITEURL }}/{{ article.url }}" class="button big">Continue Reading</a></li>
+                                    </ul>
+                                    <ul class="stats">
+                                        {%- for tag, articles in tags|sort %}
+                                            <li><a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a> ({{ articles|count }})</li>
+                                        {% endfor %}
+                                        <li><a href="#" class="icon fa-heart">0</a></li>
+                                        <li><a href="#" class="icon fa-comment">1</a></li>
+                                    </ul>
+                                </footer>
+                            </article>
+
+                        {% endfor %}
+                    {% endif %}
+
+						<!-- Pagination -->
+							<ul class="actions pagination">
+
+
+							{% if articles_page.has_previous() %}
+								{% if articles_page.previous_page_number() == 1 %}
+									<li><a href="{{ SITEURL }}/{{ page_name }}.html" class="button big previous">Previous Page</a></li>
+								{% else %}
+									<li><a href="{{ SITEURL }}/{{ page_name }}{{ articles_page.previous_page_number() }}.html" class="button big previous">Previous Page</a></li>
+								{% endif %}
+							{% else %}
+								<li><a href="" class="disabled button big previous">Previous Page</a></li>
+							{% endif %}
+
+
+							{% if articles_page.has_next() %}
+								<li><a href="{{ SITEURL }}/{{ page_name }}{{ articles_page.next_page_number() }}.html" class="button big next">Next Page</a></li>
+							{% else %}
+								<li><a href="#" class="disabled button big next">Next Page</a></li>
+							{% endif %}
+
+							</ul>
+
+                            {% include 'disqus_script.html' %}
+
+{% endblock content %}
+
+{% block Sidebar %}
+{% include 'sidebar.html' %}
+{% endblock %}
