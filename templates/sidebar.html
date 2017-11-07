@@ -25,7 +25,7 @@
                                                 <time class="published" datetime="{{ article.date }}">{{ article.locale_date|title }}</time>
                                                 <a href="#" class="author"><img src="{{ SITEURL }}/images/avatar.jpg" alt="" /></a>
 											</header>
-                                            <a href="#" class="image"><img src="{{ SITEURL }}/{{ article.minipicture }}" alt="" /></a>
+                                            <a href="#" class="image"><img src="{{ SITEURL }}/images/mini/{{ article.picture }}" alt="" /></a>
 										</article>
 
                                         {% endif %}
@@ -47,7 +47,7 @@
                                                 <h3><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h3>
                                                 <time class="published" datetime="{{ article.date }}">{{ article.locale_date|title }}</time>
 											</header>
-                                            <a href="{{ SITEURL }}/{{ article.url }}" class="image"><img src="{{ SITEURL }}/{{ article.tinypicture }}" alt="" /></a>
+                                            <a href="{{ SITEURL }}/{{ article.url }}" class="image"><img src="{{ SITEURL }}/images/icon/{{ article.picture }}" alt="" /></a>
 										</article>
 									</li>
 
