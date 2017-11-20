@@ -20,8 +20,12 @@
                                 <p>{{ article.content }}</p>
                                 <footer>
                                     <ul class="stats">
-                                        {%- for tag, articles in tags|sort %}
-                                            <li><a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a> ({{ articles|count }})</li>
+                                        {% for articles_tag, articles in tags|sort %}
+                                            {% for tag in article.tags %}
+                                                {% if tag == articles_tag %}
+                                                    <li><a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a> ({{ articles|count }})</li>
+                                                {% endif %}
+                                            {% endfor %}
                                         {% endfor %}
                                         <li><a href="#" class="icon fa-heart">0</a></li>
                                         <li><a href="#" class="icon fa-comment">1</a></li>
@@ -32,3 +36,10 @@
                     {% include 'disqus_script.html' %}
 
 {% endblock content %}
+
+
+
+
+
+
+
